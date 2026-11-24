@@ -1,0 +1,61 @@
+{
+    "ExamplePython": {
+        "version": 1,
+        "icon": "icons/isaac-sim.svg",
+        "description": "Runs the MuJoCo IMU noise plugin each tick.",
+        "language": "Python",
+        "uiName": "MuJoCo IMU Noise",
+        "categoryDefinitions": "config/CategoryDefinition.json",
+        "categories": "isaacsim",
+        "inputs": {
+            "execIn": {
+                "type": "execution",
+                "description": "Trigger. Connect On Playback Tick here."
+            },
+            "pluginPath": {
+                "type": "string",
+                "description": "Full path to imu_nbk_plugin.so",
+                "default": "/home/yasmin/imu-standalone/build/mujoco_plugin/imu_nbk_plugin.so"
+            },
+            "modelPath": {
+                "type": "string",
+                "description": "Full path to the MuJoCo XML model",
+                "default": "/home/yasmin/imu-standalone/models/free_body_imu_nograv.xml"
+            },
+            "logEnabled": {
+                "type": "bool",
+                "description": "Write every step to a CSV file.",
+                "default": false
+            },
+            "logDir": {
+                "type": "string",
+                "description": "Folder for the CSV files.",
+                "default": "/home/yasmin/imu_logs"
+            },
+            "maxSamples": {
+                "type": "int",
+                "description": "Stop logging after this many steps.",
+                "default": 10000
+            },
+            "stepsPerTick": {
+                "type": "int",
+                "description": "MuJoCo steps per Isaac Sim frame. Every step is logged.",
+                "default": 1
+            }
+        },
+        "outputs": {
+            "execOut": {
+                "type": "execution",
+                "description": "Execution continues here."
+            },
+            "accNoisy": {
+                "type": "double[3]",
+                "description": "Noisy accelerometer reading."
+            },
+            "gyroNoisy": {
+                "type": "double[3]",
+                "description": "Noisy gyroscope reading."
+            }
+        }
+    }
+}
